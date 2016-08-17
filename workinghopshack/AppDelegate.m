@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "MasterTableViewController.h"
+//#import "GetLocationViewController.h"
+#import "FavoritesTableViewController.h"
+#import "DiscoverViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,13 +20,34 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    _myGreen=[[UIColor alloc] initWithRed:0.376 green:0.729 blue:0.318 alpha:1.000];
+    _myBlue=[[UIColor alloc] initWithRed:0.11 green:0.27 blue:0.53 alpha:1.0];
+    
+    MasterTableViewController *masterTVC=[[MasterTableViewController alloc]init];
+    UINavigationController *masterNC =[[UINavigationController alloc]initWithRootViewController:masterTVC];
+       masterNC.navigationBar.barTintColor=_myGreen;
+    DiscoverViewController *discoverVC=[[DiscoverViewController alloc]init];
+    UINavigationController *discoverNC=[[UINavigationController alloc]initWithRootViewController:discoverVC];
+    discoverNC.navigationBar.barTintColor=_myGreen;
+    FavoritesTableViewController *favTVC=[[FavoritesTableViewController alloc]init];
+    UINavigationController *favNC=[[UINavigationController alloc]initWithRootViewController:favTVC];
+    favNC.navigationBar.barTintColor=_myGreen;
+    
+    UITabBarController *tabBarController =[[UITabBarController alloc]init];
+    [tabBarController setViewControllers:@[masterNC,favNC,discoverNC]];
+     tabBarController.tabBar.barTintColor =_myBlue;
+    tabBarController.tabBar.tintColor=[UIColor whiteColor];
+    self.window.rootViewController=tabBarController;
+   
+
+   
+    
     return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -40,6 +65,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 @end

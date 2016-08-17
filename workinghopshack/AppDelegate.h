@@ -10,8 +10,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-
+@property (strong,nonatomic) UIWindow *window;
+@property (strong,nonatomic) UIColor *myGreen;
+@property (strong,nonatomic) UIColor *myBlue;
 
 @end
 
